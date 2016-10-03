@@ -1,0 +1,27 @@
+group 'com.ujuezeoke.leadlogger'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+dependencies {
+    compile group: 'org.apache.httpcomponents', name: 'fluent-hc', version: '4.5.2'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.14.2'
+    compile group: 'com.sparkjava', name: 'spark-core', version: '2.5'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+    compile group: 'io.swagger', name: 'swagger-core', version: '1.5.8'
+    compile group: 'io.swagger', name: 'swagger-jaxrs', version: '1.5.8'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
+    testCompile "com.github.tomakehurst:wiremock:2.1.12"
+
+}
