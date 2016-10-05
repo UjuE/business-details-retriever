@@ -37,9 +37,9 @@ public class BusinessDetailsRetrieverService {
         final BusinessListingStore businessListingStore = BusinessListingStore
                 .createOrConnectTo(new File(".", "plomo_businesses_db.db").toPath())
                 .createBusinessListingTableIfNotExists();
-        retrieveAndStoreBusinessDetails(businessListingStore);
+//        retrieveAndStoreBusinessDetails(businessListingStore);
 
-        configureSwagger();
+//        configureSwagger();
         get("/business", AllBusinessesRoute.usingStore(businessListingStore));
         get("/business/:id", BusinessListingRoute.usingStore(businessListingStore));
         put("/business/:id", UpdateBusinessListingRoute.usingStore(businessListingStore));

@@ -1,6 +1,6 @@
 package com.ujuezeoke.businessdetails.route;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ujuezeoke.businessdetails.dao.BusinessListingStore;
 import com.ujuezeoke.businessdetails.yelp.tinytypes.jsonObjects.BusinessListing;
 import spark.Request;
@@ -25,7 +25,7 @@ public class UpdateBusinessListingRoute implements Route {
     public Response handle(Request request, Response response) throws Exception {
         final String id = request.params(":id");
         final BusinessListing businessListingOnDatabase = businessListingStore.getById(id);
-        final BusinessListing businessListingFromRequest = new Gson().fromJson(request.body(), BusinessListing.class);
+        final BusinessListing businessListingFromRequest = new ObjectMapper().readValue(request.body(), BusinessListing.class);
 
         if (id.equals(businessListingFromRequest.getId()) && id.equals(businessListingOnDatabase.getId())) {
             businessListingStore.saveOrUpDate(businessListingFromRequest);

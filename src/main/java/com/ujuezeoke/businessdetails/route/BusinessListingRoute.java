@@ -1,5 +1,6 @@
 package com.ujuezeoke.businessdetails.route;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ujuezeoke.businessdetails.dao.BusinessListingStore;
 import com.ujuezeoke.businessdetails.yelp.tinytypes.jsonObjects.BusinessListing;
 import spark.Request;
@@ -21,7 +22,10 @@ public class BusinessListingRoute implements Route {
     }
 
     @Override
-    public BusinessListing handle(Request request, Response response) throws Exception {
-        return businessListingStore.getById(request.params(":id"));
+    public String handle(Request request, Response response) throws Exception {
+
+        response.header("Content-Type", "application/json");
+        return new ObjectMapper()
+                .writeValueAsString(businessListingStore.getById(request.params(":id")));
     }
 }

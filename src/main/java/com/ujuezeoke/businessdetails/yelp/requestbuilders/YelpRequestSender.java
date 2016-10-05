@@ -1,8 +1,8 @@
 package com.ujuezeoke.businessdetails.yelp.requestbuilders;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.ujuezeoke.businessdetails.yelp.tinytypes.Result;
-import org.apache.http.Header;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.fluent.Response;

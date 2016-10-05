@@ -87,11 +87,9 @@ public class BusinessListingStore {
     }
 
     private String safelyRetrieveContractEndDate(BusinessListing businessListing) {
-//        final java.util.Date contractEndDate = businessListing.getContractEndDate();
-
-//        return contractEndDate != null ? String.valueOf(contractEndDate.toInstant().getEpochSecond())
-//                : null;
-        return null;
+        final java.util.Date contractEndDate = businessListing.getContractEndDate();
+        return contractEndDate != null ? String.valueOf(contractEndDate.toInstant().getEpochSecond())
+                : null;
     }
 
     public static BusinessListingStoreCreator createOrConnectTo(Path file) {
@@ -147,10 +145,15 @@ public class BusinessListingStore {
             );
 
             return new BusinessListing(idValue, businessNameValue, phoneValue, location,
-                    currentEnergySupplier, Date.from(Instant.ofEpochSecond(contractEndDateInstant)));
+                    currentEnergySupplier, getDateOrNull(contractEndDateInstant));
         } catch (SQLException e) {
             throw new UnsupportedOperationException("Not Yet Implemented", e);
         }
+    }
+
+    private Date getDateOrNull(Long contractEndDateInstant) {
+        return contractEndDateInstant != 0 ? Date.from(Instant.ofEpochSecond(contractEndDateInstant))
+                : null;
     }
 
     public Collection<BusinessListing> getAllBusinessListings() {
