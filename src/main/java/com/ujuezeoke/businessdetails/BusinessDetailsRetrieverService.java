@@ -42,7 +42,7 @@ public class BusinessDetailsRetrieverService {
 //        configureSwagger();
         get("/business", AllBusinessesRoute.usingStore(businessListingStore));
         get("/business/:id", BusinessListingRoute.usingStore(businessListingStore));
-        put("/business/:id", UpdateBusinessListingRoute.usingStore(businessListingStore));
+        patch("/business/:id", UpdateBusinessListingRoute.usingStore(businessListingStore));
     }
 
     private static void configureSwagger() {
